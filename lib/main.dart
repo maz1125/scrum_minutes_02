@@ -1,8 +1,29 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'Login.dart';
+import 'home.dart';
+
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  // runApp(MyApp());
   runApp(MyApp());
 }
+
+// class SignInDemo extends StatefulWidget {
+//   @override
+//   State createState() => SignInDemoState();
+// }
+//
+// class SignInDemoState extends State<SignInDemo> {
+//   final _auth = FirebaseAuth.instance;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold();
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -27,7 +48,7 @@ class MyApp extends StatelessWidget {
       home: Login(),
       routes: <String,WidgetBuilder> {
         '/Login': (BuildContext context) => Login(),
-        '/Home': (BuildContext context) => Home()
+        '/Home': (BuildContext context) => Login()
       },
     );
   }
@@ -118,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Login extends StatelessWidget{
+class LoginTest extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     void _handlePressed() {
@@ -186,56 +207,6 @@ class Login extends StatelessWidget{
                     ),
                   ),
                 )
-              ],
-            )
-        )
-    );
-  }
-}
-
-class Home extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        body: new Container(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "ホーム画面",
-                  style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w500
-                  ),
-                ),
-                Container(
-                    color: Colors.grey,
-                    width: 1000,
-                    height: 300
-                ),
-                Container(
-                    width: 1000,
-                    height: 300,
-                    child: Column(
-                      children: <Widget>[
-                        RaisedButton(onPressed: () => Navigator.of(context).pop(), child: new Text('新規作成'),),
-                        RaisedButton(onPressed: () => Navigator.of(context).pop(), child: new Text('英単語'),),
-                        RaisedButton(onPressed: () => Navigator.of(context).pop(), child: new Text('IT用語'),),
-                        RaisedButton(onPressed: () => Navigator.of(context).pop(), child: new Text('メニューリスト'),)
-                      ],
-                    ),
-                ),
-                // new TextField(
-                //   enabled: true,
-                //   // 入力数
-                //   maxLength: 10,
-                //   maxLengthEnforced: false,
-                //   style: TextStyle(color: Colors.red),
-                //   obscureText: false,
-                //   maxLines:1 ,
-                //   //パスワード
-                // ),
-                RaisedButton(onPressed: () => Navigator.of(context).pop(), child: new Text('戻る'),)
               ],
             )
         )
